@@ -1,0 +1,29 @@
+---
+# tasks file for tmp
+
+- name: Install libraries
+  apt:
+    - name: {{item}}
+  with_items:
+    - build-essential
+    - libssl-dev
+    - libreadline-dev
+    - zlib1g-dev
+    - libbz2-dev
+    - libsqlite3-dev
+    - curl
+    - m4
+    - texinfo
+    - libcurl4-openssl-dev
+    - libexpat1-dev
+    - libncurses5-dev
+
+
+- name: Install anyenv
+  git:
+    - repos: https://github.com/riywo/anyenv
+      dist: ~/.anyenv
+  notify: "anyenv update"
+
+
+- 

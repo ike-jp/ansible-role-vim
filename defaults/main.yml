@@ -1,12 +1,23 @@
 ---
 vim_repository_url: https://github.com/vim-jp/vim.git
-vim_installation_dir: $HOME/ansible_test/local
 vim_installation_version: v7.4.393
-vim_temporary_dir_to_build: ~/ansible_test/tmp/vim
+
+# FHS準拠
+vim_installation_dir: $HOME/ansible_test/local
+vim_installation_src_dir: ~/ansible_test/tmp/vim
+
+# /usr/localを使う場合はsudo権限が必要になる
+# またenv系を使う場合は実行ユーザのPATHをsudoに引き継ぐ必要がある
+# $ alias sudo='sudo env PATH=$PATH'
+# ----------------------------------------
+#vim_installation_dir: /usr/local
+#vim_installation_src_dir: /usr/local/src/vim
 
 vim_dependencies:
   - libncurses5-dev
 
+# 設定可能なオプションはsrcディレクトリで`./configure --help`で確認
+# ----------------------------------------
 # fail-if-missing: 足りないパッケージがある場合にエラーとする
 # http://kazuomabuo.hatenablog.jp/entry/2013/08/21/112226
 # --with-lua-prefix=luaのrootディレクトリ (sudo find / -name "lua.h")

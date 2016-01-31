@@ -31,9 +31,10 @@ vim_configures_to_build:
   - --with-python-config-dir=/home/vagrant/.anyenv/envs/pyenv/versions/2.7.10/lib/python2.7/config
   - --enable-luainterp
   - --with-lua-prefix=/home/vagrant/.anyenv/envs/luaenv/versions/5.2.2
-  - --enable-perlinterp
   - --enable-rubyinterp
   - --with-ruby-command=/home/vagrant/.anyenv/envs/rbenv/shims/ruby
+
+#  - --enable-perlinterp
 
 # ansibleがpython2.x系で動作しているので、
 # python3を有効にするために3.x系を有効にするとansibleが動かなくなる

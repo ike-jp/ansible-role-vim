@@ -19,10 +19,10 @@
         installation_versions:
           - 5.2.2
 
-      - name: plenv
-        global_version: 5.23.7
-        installation_versions:
-          - 5.23.7
+#      - name: plenv
+#        global_version: 5.23.7
+#        installation_versions:
+#          - 5.23.7
 
   roles:
     - yaegashi.blockinfile

@@ -1,29 +1,39 @@
 ---
-# tasks file for tmp
-
-- name: Install libraries
+- name: Install dependencies
+  sudo: yes
   apt:
-    - name: {{item}}
+    name: "{{ item }}"
+    state: present
   with_items:
-    - build-essential
-    - libssl-dev
-    - libreadline-dev
-    - zlib1g-dev
-    - libbz2-dev
-    - libsqlite3-dev
-    - curl
-    - m4
-    - texinfo
-    - libcurl4-openssl-dev
-    - libexpat1-dev
-    - libncurses5-dev
+    - "{{ vim_dependencies }}"
 
 
-- name: Install anyenv
+- name: Clone vim_repository
   git:
-    - repos: https://github.com/riywo/anyenv
-      dist: ~/.anyenv
-  notify: "anyenv update"
+    repo: "{{ vim_repository_url }}"
+    dest: "{{ vim_temporary_dir_to_build }}"
+    version: "{{ vim_installation_version }}"
+    force: yes
 
 
-- 
+- name: Make configure
+  shell: |
+    make clean
+    make distclean
+    ./configure --prefix={{ vim_installation_dir }} {{ vim_configures_to_build | join(' ') }}
+  args:
+    chdir: "{{ vim_temporary_dir_to_build }}"
+
+
+- name: Make
+  shell: make
+  args:
+    chdir: "{{ vim_temporary_dir_to_build }}"
+
+
+- name: Make install
+  shell: make install
+  args:
+    chdir: "{{ vim_temporary_dir_to_build }}"
+
+

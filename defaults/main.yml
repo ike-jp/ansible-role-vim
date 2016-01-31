@@ -1,2 +1,32 @@
 ---
-# defaults file for tmp
+vim_repository_url: https://github.com/vim-jp/vim.git
+vim_installation_dir: $HOME/ansible_test/local
+vim_installation_version: v7.4.393
+vim_temporary_dir_to_build: ~/ansible_test/tmp/vim
+
+vim_dependencies:
+  - libncurses5-dev
+
+# fail-if-missing: 足りないパッケージがある場合にエラーとする
+# http://kazuomabuo.hatenablog.jp/entry/2013/08/21/112226
+# --with-lua-prefix=luaのrootディレクトリ (sudo find / -name "lua.h")
+# --with-python-config-dir= (find ~/.anyenv/envs/pyenv -name "config.c")
+# --with-ruby-command= (which ruby)
+vim_configures_to_build:
+  - --with-features=huge
+  - --enable-multibyte
+  - --enable-fail-if-missing
+  - --enable-pythoninterp
+  - --with-python-config-dir=/home/vagrant/.anyenv/envs/pyenv/versions/2.7.10/lib/python2.7/config
+  - --enable-luainterp
+  - --with-lua-prefix=/home/vagrant/.anyenv/envs/luaenv/versions/5.2.2
+  - --enable-perlinterp
+  - --enable-rubyinterp
+  - --with-ruby-command=/home/vagrant/.anyenv/envs/rbenv/shims/ruby
+
+# ansibleがpython2.x系で動作しているので、
+# python3を有効にするために3.x系を有効にするとansibleが動かなくなる
+#- --enable-python3interp
+#- --with-python3-config-dir=/home/vagrant/.anyenv/envs/pyenv/versions/3.5.1/lib/python3.5/config-3.5m
+
+

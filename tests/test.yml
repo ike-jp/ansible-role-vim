@@ -26,6 +26,6 @@
 
   roles:
     - yaegashi.blockinfile
-    - ike-jp.vim
+    - ike-jp.anyenv
     - ansible-role-vim
 

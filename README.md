@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ike-jp/ansible-role-vim.svg?branch=master)](https://travis-ci.org/ike-jp/ansible-role-vim)
+
 Ansible Role: Vim
 =========
 
@@ -6,35 +8,64 @@ Under development
 Requirements
 ------------
 
-+ RedHat/CentOS: None
-+ Debian/Ubunt: None
++ RedHat/CentOS: git
++ Debian/Ubunt: git
 
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Available variables are listed below, along with default values (see defaults/main.yml):
+
+```yaml
+vim_repository_url: https://github.com/vim-jp/vim.git
+vim_installation_version: v7.4.393
+vim_installation_dir: $HOME/ansible_test/local
+vim_installation_src_dir: ~/ansible_test/tmp/vim
+
+vim_configures_to_build:
+  - --with-features=huge
+  - --enable-multibyte
+  - --enable-fail-if-missing
+  - --enable-pythoninterp
+...
+
+```
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
++ None.
+
+If install interpreter by anyenv,
+for example you will need the following roles.
+
++ ike-jp.anyenv
++ yaegashi.blockinfile
+
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
+```yaml
     - hosts: servers
       roles:
          - { role: ike-jp.vim }
+```
+
 
 License
 -------
 
 MIT License
 
+
 Author Information
 ------------------
 
-hoge
+This role was created in 2016 by ike-jp.
+
+
